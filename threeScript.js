@@ -742,12 +742,6 @@ function init() {
             console.log(entries[0]);
 
 
-
-            // console.log('obserwer' + entries.getAttribute('data-color'));
-            // console.log(entries[0].target.dataset.color);
-            // alert(entries[0].target.dataset.color);
-            // gotoDefault();
-            // $(".threeJS__container").css("background", "#FFFFFF00");
             $(".threeJS__container").css("background", entries[0].target.dataset.color);
             placeTemp = entries[0].target.dataset.place;
             console.log(placeTemp);
@@ -776,15 +770,15 @@ function init() {
             }
 
 
-            observer.unobserve(section.target);
+            // observer.unobserve(entries.target);
 
         };
 
         const config = {
             root: null,
             rootMargin: '0px',
-            threshold: 0.2
-        }
+            threshold: 0.3
+        };
 
         const observer = new IntersectionObserver(callbackFunction, config);
 
