@@ -751,6 +751,7 @@ function init() {
                 b: colorTo.b,
                 duration: 0.5
             });
+
             placeTemp = entries[0].target.dataset.place;
             console.log(placeTemp);
             switch (placeTemp) {
