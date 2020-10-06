@@ -741,46 +741,33 @@ function init() {
         const callbackFunction = function (entries) {
             console.log(entries[0]);
 
-            colorTheme = entries[0].target.dataset.color;
-            console.log(colorTheme);
-            $(".threeJS__container").css("background", colorTheme);
-
-            const colorTo = new THREE.Color(colorTheme);
-            // let colorTransition = 
-
-            if (colorTheme != '#ffffff00') {
-                gsap.to(lightD.color, {
-                    r: colorTo.r,
-                    g: colorTo.g,
-                    b: colorTo.b,
-                    duration: 0.5
-                });
-            }
-
-            placeTemp = entries[0].target.dataset.place;
-            console.log(placeTemp);
-            switch (placeTemp) {
-                case 'begin':
-                    onBeginning();
-                    break;
-                case 'itemshop':
-                    gotoItemshop();
-                    break;
-                case 'bar':
-                    gotoGameBar();
-                    break;
-                case 'yourClass':
-                    gotoYourClass();
-                    break;
-                case 'library':
-                    gotoLibrary();
-                    break;
-                case 'mine':
-                    gotoMine();
-                    break;
-                default:
-                    console.log('gotoDefault');
-                    gotoDefault();
+            if (entries[0].isIntersecting) {
+                $(".threeJS__container").css("background", entries[0].target.dataset.color);
+                placeTemp = entries[0].target.dataset.place;
+                console.log(placeTemp);
+                switch (placeTemp) {
+                    case 'begin':
+                        onBeginning();
+                        break;
+                    case 'itemshop':
+                        gotoItemshop();
+                        break;
+                    case 'bar':
+                        gotoGameBar();
+                        break;
+                    case 'yourClass':
+                        gotoYourClass();
+                        break;
+                    case 'library':
+                        gotoLibrary();
+                        break;
+                    case 'mine':
+                        gotoMine();
+                        break;
+                    default:
+                        console.log('gotoDefault');
+                        gotoDefault();
+                }
             }
 
 

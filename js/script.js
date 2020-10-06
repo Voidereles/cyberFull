@@ -1,14 +1,14 @@
 // new WOW().init();
 
-// new fullpage('#fullpage', {
-//     // anchors: ['heroPage', '1stPage', '2ndPage', '3rdPage', '4thPage', '5thPage', '6thPage', '7thPage',
-//     //     'lastPage'
-//     // ],
-//     autoScrolling: true,
-//     // scrollHorizontally: true
-// });
+new fullpage('#fullpage', {
+    // anchors: ['heroPage', '1stPage', '2ndPage', '3rdPage', '4thPage', '5thPage', '6thPage', '7thPage',
+    //     'lastPage'
+    // ],
+    autoScrolling: true,
+    // scrollHorizontally: true
+});
 
-// fullpage_api.setAllowScrolling(true);
+fullpage_api.setAllowScrolling(true);
 
 
 

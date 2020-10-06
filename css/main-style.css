@@ -366,10 +366,6 @@ h6 {
   position: relative;
 }
 
-#fullpage .section {
-  height: 250vh;
-}
-
 .projects {
   margin-top: 150vh;
   padding-top: calc(45vh - 50px);
