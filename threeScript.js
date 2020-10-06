@@ -741,8 +741,16 @@ function init() {
         const callbackFunction = function (entries) {
             console.log(entries[0]);
 
-
-            $(".threeJS__container").css("background", entries[0].target.dataset.color);
+            colorTheme = entries[0].target.dataset.color;
+            $(".threeJS__container").css("background", colorTheme);
+            const colorTo = new THREE.Color(colorTheme);
+            // let colorTransition = 
+            gsap.to(lightD.color, {
+                r: colorTo.r,
+                g: colorTo.g,
+                b: colorTo.b,
+                duration: 0.5
+            });
             placeTemp = entries[0].target.dataset.place;
             console.log(placeTemp);
             switch (placeTemp) {
