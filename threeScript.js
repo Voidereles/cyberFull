@@ -742,15 +742,20 @@ function init() {
             console.log(entries[0]);
 
             colorTheme = entries[0].target.dataset.color;
+            console.log(colorTheme);
             $(".threeJS__container").css("background", colorTheme);
+
             const colorTo = new THREE.Color(colorTheme);
             // let colorTransition = 
-            gsap.to(lightD.color, {
-                r: colorTo.r,
-                g: colorTo.g,
-                b: colorTo.b,
-                duration: 0.5
-            });
+
+            if (colorTheme != '#ffffff00') {
+                gsap.to(lightD.color, {
+                    r: colorTo.r,
+                    g: colorTo.g,
+                    b: colorTo.b,
+                    duration: 0.5
+                });
+            }
 
             placeTemp = entries[0].target.dataset.place;
             console.log(placeTemp);
