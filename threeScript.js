@@ -732,58 +732,7 @@ function init() {
 
 
     let colorTheme;
-    //pos rot and scale go into local transform matrix which is by default automatically updated
-    //Projection Matrix only needs update after FOV changes
-    // $(".projects__title").hover(
-    //     function () {
-    //         colorTheme = this.getAttribute("data-color");
-    //         colorChange(colorTheme);
-    //     }
-    // );
 
-    // $(".projects__title").scroll(
-    //     function () {
-    //         colorChange('#111319');
-    //     }
-    // );
-
-    // $(".projects__itemshop").hover(
-    //     function () {
-    //         gotoItemshop();
-    //     }
-    // );
-
-    // $(".projects__bar").hover(
-    //     function () {
-    //         gotoGameBar();
-    //     }
-    // );
-
-    // $(".projects__yourClass").hover(
-    //     function () {
-    //         gotoYourClass();
-    //     }
-    // );
-
-    // $(".projects__library").hover(
-    //     function () {
-    //         gotoLibrary();
-    //     }
-    // );
-
-
-    // $(".projects__mine").hover(
-    //     function () {
-    //         gotoMine();
-    //     }
-    // );
-
-    // $(".projects__title").mouseleave(
-    //     function () {
-    //         colorChange('#111319');
-    //         gotoDefault();
-    //     }
-    // );
 
     let placeTemp;
 
@@ -842,7 +791,7 @@ function init() {
         // observer.observe(sections);
 
         sections.forEach(section => observer.observe(section));
-    }
+    };
 
 }
 
