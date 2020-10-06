@@ -46,7 +46,7 @@ const colorChange = function (getColorTheme) {
         duration: 0.5
     });
 
-    console.log(getColorTheme);
+    // console.log(getColorTheme);
     $(".threeJS__container").css("background", getColorTheme);
 }
 
@@ -80,7 +80,7 @@ const DecreaseLogoSize = function () {
             controls.update();
         }
     });
-}
+};
 
 
 //export because of module!!! big brain time https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules
@@ -560,8 +560,9 @@ function init() {
         onBeginningScrollFlag = false;
     }
 
-
-    $(window).scroll(function () {
+    $('html').bind('mousewheel DOMMouseScroll', function (e) {
+        console.log('bingo');
+        // $(window).scroll(function () {
         if (window.pageYOffset < window.innerHeight / 3) {
             onBeginning();
             // colorChange('#FFFFFF');
@@ -571,6 +572,7 @@ function init() {
             gotoDefault();
             onBeginningScrollFlag = false;
         }
+        // });
     });
 
 
@@ -732,56 +734,116 @@ function init() {
     let colorTheme;
     //pos rot and scale go into local transform matrix which is by default automatically updated
     //Projection Matrix only needs update after FOV changes
-    $(".projects__title").hover(
-        function () {
-            colorTheme = this.getAttribute("data-color");
-            colorChange(colorTheme);
-        }
-    );
+    // $(".projects__title").hover(
+    //     function () {
+    //         colorTheme = this.getAttribute("data-color");
+    //         colorChange(colorTheme);
+    //     }
+    // );
 
-    $(".projects__title").scroll(
-        function () {
-            colorChange('#111319');
-        }
-    );
+    // $(".projects__title").scroll(
+    //     function () {
+    //         colorChange('#111319');
+    //     }
+    // );
 
-    $(".projects__itemshop").hover(
-        function () {
-            gotoItemshop();
-        }
-    );
+    // $(".projects__itemshop").hover(
+    //     function () {
+    //         gotoItemshop();
+    //     }
+    // );
 
-    $(".projects__bar").hover(
-        function () {
-            gotoGameBar();
-        }
-    );
+    // $(".projects__bar").hover(
+    //     function () {
+    //         gotoGameBar();
+    //     }
+    // );
 
-    $(".projects__yourClass").hover(
-        function () {
-            gotoYourClass();
-        }
-    );
+    // $(".projects__yourClass").hover(
+    //     function () {
+    //         gotoYourClass();
+    //     }
+    // );
 
-    $(".projects__library").hover(
-        function () {
-            gotoLibrary();
-        }
-    );
+    // $(".projects__library").hover(
+    //     function () {
+    //         gotoLibrary();
+    //     }
+    // );
 
 
-    $(".projects__mine").hover(
-        function () {
-            gotoMine();
-        }
-    );
+    // $(".projects__mine").hover(
+    //     function () {
+    //         gotoMine();
+    //     }
+    // );
 
-    $(".projects__title").mouseleave(
-        function () {
-            colorChange('#111319');
-            gotoDefault();
+    // $(".projects__title").mouseleave(
+    //     function () {
+    //         colorChange('#111319');
+    //         gotoDefault();
+    //     }
+    // );
+
+    let placeTemp;
+
+    window.onload = function () {
+        const sections = document.querySelectorAll('section .projects__title');
+        const callbackFunction = function (entries) {
+            console.log(entries[0]);
+
+
+
+            // console.log('obserwer' + entries.getAttribute('data-color'));
+            // console.log(entries[0].target.dataset.color);
+            // alert(entries[0].target.dataset.color);
+            // gotoDefault();
+            // $(".threeJS__container").css("background", "#FFFFFF00");
+            $(".threeJS__container").css("background", entries[0].target.dataset.color);
+            placeTemp = entries[0].target.dataset.place;
+            console.log(placeTemp);
+            switch (placeTemp) {
+                case 'begin':
+                    onBeginning();
+                    break;
+                case 'itemshop':
+                    gotoItemshop();
+                    break;
+                case 'bar':
+                    gotoGameBar();
+                    break;
+                case 'yourClass':
+                    gotoYourClass();
+                    break;
+                case 'library':
+                    gotoLibrary();
+                    break;
+                case 'mine':
+                    gotoMine();
+                    break;
+                default:
+                    console.log('gotoDefault');
+                    gotoDefault();
+            }
+
+
+            observer.unobserve(section.target);
+
+        };
+
+        const config = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.2
         }
-    );
+
+        const observer = new IntersectionObserver(callbackFunction, config);
+
+        // observer.observe(sections);
+
+        sections.forEach(section => observer.observe(section));
+    }
+
 }
 
 

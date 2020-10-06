@@ -245,14 +245,14 @@ h6 {
     max-width: 1700px;
 }
 
-.introLogo {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(1);
-    transition: 0.2s linear;
-    display: none;
-}
+// .introLogo {
+//     position: fixed;
+//     top: 50%;
+//     left: 50%;
+//     transform: translate(-50%, -50%) scale(1);
+//     transition: 0.2s linear;
+//     display: none;
+// }
 
 .header {
     display: flex;
@@ -430,13 +430,17 @@ h6 {
 
 .hero {
     text-align: center;
-    position: fixed;
-    z-index: -2;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    left: 50%;
+    // position: fixed;
+    // z-index: -2;
+    // top: 50%;
+    // transform: translate(-50%, -50%);
+    // left: 50%;
     color: black;
 
+}
+
+.section .fp-tableCell {
+    position: relative;
 }
 
 // .video {
@@ -458,16 +462,20 @@ h6 {
 //     -webkit-filter: brightness(0.4);
 // }
 
+#fullpage .section {
+    height: 100vh;
+}
+
 .projects {
     margin-top: 150vh;
     padding-top: calc(45vh - 50px);
     padding-bottom: calc(45vh - 85px);
 
     &__heading {
-        font-size: 12px;
+        font-size: $fontSizeBodyL;
         letter-spacing: 4px;
         font-weight: 300;
-        color: rgba(187, 194, 229, .3);
+        color: rgba(34, 34, 36, 0.3);
         text-transform: uppercase;
         padding-bottom: 4rem;
         position: relative;
@@ -476,9 +484,9 @@ h6 {
 
         &::before {
             content: '';
-            height: 2px;
+            height: 3px;
             width: 50px;
-            background-color: rgba(187, 194, 229, 0.3);
+            background-color: rgba(34, 34, 36, 0.3);
             display: inline-block;
             vertical-align: middle;
             margin-right: 1rem;
@@ -500,52 +508,32 @@ h6 {
 
 
         &:hover {
-            color: white;
+            color: black;
             text-decoration: none;
             z-index: 3;
 
-            .projects {
-                &__description {
-                    opacity: 1;
-                    bottom: 100px;
-
-                }
-
-                &__title {
-                    &::before {
-                        opacity: 0.6;
-                        bottom: -20px;
-                        right: 160px;
-                    }
-
-                    &::after {
-                        opacity: 0.8;
-                    }
-                }
+            .projects__description {
+                color: black;
+                // font-weight: 700
             }
-
-
         }
     }
 
     &__description {
-        position: fixed;
-        right: 45px;
-        bottom: -100px;
+        // position: fixed;
         height: auto;
         width: 300px;
         z-index: 1;
-        text-align: right;
-        opacity: 0;
+        text-align: left;
+        padding: 15px;
+        opacity: 1;
         font-family: Muli, Heebo, Helvetica, Arial, sans-serif;
         font-weight: 300;
         font-style: normal;
-        color: #fff;
+        color: black;
         font-size: 1rem;
         line-height: 1.3636363636;
         transition: .6s cubic-bezier(.165, .84, .44, 1);
-        // opacity: 1;
-        // bottom: 100px;
     }
 }
 

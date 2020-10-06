@@ -16,7 +16,7 @@
 
 	<link rel="stylesheet" href="https://use.typekit.net/gfs2vqf.css">
 
-
+	<link rel="stylesheet" type="text/css" href="css/fullpage.css" />
 
 	<link type="text/css" rel="stylesheet" href="css/main-style.css">
 
@@ -29,63 +29,94 @@
 		<source src="BackgroundVideo.mp4" type="video/mp4">
 	</video> -->
 
-	<section id="hero" class="hero scrollspy">
-		<h4>Witaj w grze!</h4>
-	</section>
+	<header>
+
+	</header>
+
+
 	<main class="main-container">
 
+		<div id="fullpage" class="container-fluid">
 
-		<section id="projects" class="projects scrollspy">
 
-			<div class="container-fluid">
+			<section id="hero" class="section">
+				<div class="hero projects__title" data-color="#FFFFFF00" data-place="begin">
+					<h4>Witaj w cybermaszynie! biały/model schowany</h4>
+				</div>
+			</section>
+
+
+
+			<section class="section">
 				<a class="row">
-					<div class="col-12">
-						<h3 class="projects__heading">Co znajdziesz w cybermaszynie?</h3>
+					<div class="col-12 projects__title" data-color="#FFFFFF00" data-place="begin">
+						<h3 class="projects__heading">Co znajdziesz w cybermaszynie? biały/model schowany</h3>
 					</div>
 				</a>
+			</section>
+
+
+			<section class="section" id="box">
 				<a class="row projects__item" href="#">
-					<div class="col-12 projects__title projects__itemshop" data-color="#1739d1">Sklep</div>
+					<div class="col-12 projects__title projects__itemshop" data-color="#1739d1" data-place="itemshop">
+						Sklep</div>
 					<div class="projects__description">
+						<p>niebieski/dach modelu</p>
 						Serce portalu. Tu wymienisz swoje żetony na gry, książki, skórki i gadżety!
 					</div>
 				</a>
+			</section>
 
+			<section class="section">
 				<a class="row projects__item" href="#">
-					<div class="col-12 projects__title projects__bar" data-color="#DD8700">Bar gamingowy</div>
+					<div class="col-12 projects__title projects__bar" data-color="#DD8700" data-place="bar">Bar
+						gamingowy</div>
 					<div class="projects__description">
+						<p>pomarańczowy/napis game bar na modelu</p>
 						Tutaj zdobędziesz punkty za granie. Im większy poziom i ilość wypróbowanych gier, tym więcej
 						nagród!
 					</div>
 				</a>
+			</section>
 
+			<section class="section">
 				<a class="row projects__item" href="#">
-					<div class="col-12 projects__title projects__yourClass" data-color="#1aba41">Wasza klasa
+					<div class="col-12 projects__title projects__yourClass" data-color="#1aba41" data-place="yourClass">
+						Wasza klasa
 					</div>
 					<div class="projects__description">
+						<p>Klasa z ławkami i tablicą/zielony</p>
 						Nie samym graniem żyje człowiek. Zdobądź żetony pytając i odpowiadając użytkownikom portalu!
 					</div>
 
 				</a>
+			</section>
 
+			<section class="section">
 				<a class="row projects__item" href="#">
-					<div class="col-12 projects__title projects__library" data-color="#96771b">Biblioteka</div>
+					<div class="col-12 projects__title projects__library" data-color="#96771b" date-place="library">
+						Biblioteka</div>
 
 					<div class="projects__description">
+						<p>ciemnożółty/regały w bibliotece</p>
 						Opowiedz swoją historię lub napisz poradnik, a otrzymasz kolejne żetony. Kuźnia pisarskich
 						talentów!
 					</div>
 
 				</a>
+			</section>
 
+			<section class="section">
 				<a class="row projects__item" href="#">
-					<div class="col-12 projects__title projects__mine" data-color="#9e1c1c">Kopalnia
+					<div class="col-12 projects__title projects__mine" data-color="#9e1c1c" data-place="mine">Kopalnia
 					</div>
 					<div class="projects__description">
+						<p>sam dół modelu/czerwony</p>
 						Odkopuj memy i tworz własne. Za każdy stworzony mem dostajesz punkty!
 					</div>
 				</a>
-				<div class="container-fluid">
-		</section>
+			</section>
+		</div>
 	</main>
 
 
@@ -114,12 +145,15 @@
 	<script src="js/CustomEase.min.js"></script>
 
 
-	<script src="threeScript.js" type="module"></script>
+	<script src="threeScript.js" type="module" defer></script>
 
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
-	<script src="js/script.js"></script>
+
+	<script src="js/fullpage.js" defer></script>
+
+	<script src="js/script.js" defer></script>
 </body>
 
 </html>
