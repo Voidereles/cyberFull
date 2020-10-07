@@ -812,10 +812,10 @@ new fullpage('#fullpage', {
                 gotoDefault();
         }
 
-        if (origin.item.getAttribute('data-place') == 'mine' && direction == 'down') {
-            console.log('dasdasd');
-            gotoMine();
-        }
+        // if (origin.item.getAttribute('data-place') == 'mine' && direction == 'down') {
+        //     console.log('dasdasd');
+        //     gotoMine();
+        // }
         // if (origin.item.getAttribute('data-place') == begin) {
         //     onBeginning();
         // }
