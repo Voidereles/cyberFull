@@ -9,9 +9,11 @@ import {
     GLTFLoader
 } from './three.js-master/examples/jsm/loaders/GLTFLoader.js';
 
+let threeJSContainer;
 let container, controls;
 let camera, scene, renderer, mixer;
 let lightA, lightH, lightD;
+let targetCamera;
 
 let onMouseMoveLogoRotation = true;
 
@@ -21,6 +23,7 @@ var clock = new THREE.Clock();
 
 //export because of module!!! big brain time https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules
 
+gsap.registerPlugin(CustomEase);
 
 const onBeginning = function () {
     gsap.to(camera, {
@@ -426,7 +429,6 @@ function init() {
 
     window.addEventListener('resize', onWindowResize, false);
 
-    gsap.registerPlugin(CustomEase);
 
 
 
