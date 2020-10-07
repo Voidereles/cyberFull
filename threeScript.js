@@ -1,17 +1,9 @@
 import * as THREE from './three.js-master/build/three.module.js';
-
-
 import {
     OrbitControls
 } from './three.js-master/examples/jsm/controls/OrbitControls.js';
-
-// import {
-//     FBXLoader
-// } from './three.js-master/examples/jsm/loaders/FBXLoader.js';
-
 import {
     GUI,
-    gui
 } from './three.js-master/examples/jsm/libs/dat.gui.module.js';
 import {
     GLTFLoader
@@ -21,15 +13,8 @@ let threeJSContainer;
 let container, controls;
 let camera, scene, renderer, mixer;
 let lightA, lightH, lightD;
-var helper;
-
 
 let targetCamera;
-let mouseX = 0;
-let mouseY = 0;
-let mouseXpercent = 0;
-let mouseYpercent = 0;
-
 let onMouseMoveLogoRotation = true;
 
 let getColorHex;
@@ -48,7 +33,7 @@ const colorChange = function (getColorTheme) {
 
     // console.log(getColorTheme);
     $(".threeJS__container").css("background", getColorTheme);
-}
+};
 
 const DecreaseLogoSize = function () {
     gsap.to(camera, {
@@ -391,7 +376,7 @@ const LeftLogoPosition = function () {
             controls.update();
         }
     });
-}
+};
 // window.DecreaseLogoSize = DecreaseLogoSize; //window, żeby móc odwołać się w konsoli. Tylko do debugowania!
 // window.IncreaseLogoSize = IncreaseLogoSize;
 
@@ -399,6 +384,7 @@ const LeftLogoPosition = function () {
 init();
 animate();
 
+let activeSection;
 
 function init() {
 
@@ -452,8 +438,6 @@ function init() {
     lightD.shadow.camera.left = -200;
     lightD.shadow.camera.right = 300;
     scene.add(lightD);
-    // var helperD = new THREE.DirectionalLightHelper(lightD, 5);
-    // scene.add(helperD);
 
     // ground
     // var mesh = new THREE.Mesh(new THREE.PlaneBufferGeometry(2000, 2000), new THREE.MeshPhongMaterial({
@@ -519,61 +503,43 @@ function init() {
     controls.update();
     controls.enabled = false; //blocking orbit controls
 
-    //moving mouse
     targetCamera = new THREE.Vector3().copy(controls.target)
-
-    container.addEventListener("mousemove", onDocumentMouseMove, false);
-    // document.addEventListener( 'touchstart', onTouchStart, false );
-    container.addEventListener("touchmove", onTouchMove, false);
-
-    function onTouchMove(event) {
-        event.preventDefault();
-        onDocumentMouseMove(event.touches[0]);
-    }
-
-    function onDocumentMouseMove(event) {
-        const windowHalfX = window.innerWidth >> 1;
-        const windowHalfY = window.innerHeight >> 1;
-
-        mouseX = event.clientX - windowHalfX;
-        mouseY = event.clientY - windowHalfY;
-
-        mouseXpercent = mouseX / (window.innerWidth / 2);
-        mouseYpercent = mouseY / (window.innerHeight / 2);
-    }
-
-
-
 
     window.addEventListener('resize', onWindowResize, false);
 
     gsap.registerPlugin(CustomEase);
 
-    let onBeginningScrollFlag = true;
+    // let onBeginningScrollFlag = true;
 
-    if (window.pageYOffset < window.innerHeight / 3) {
-        onBeginning();
-        // colorChange('#FFFFFF');
-        onBeginningScrollFlag = true;
-    } else if (window.pageYOffset >= window.innerHeight / 3 && onBeginningScrollFlag == true) {
-        gotoDefault();
-        onBeginningScrollFlag = false;
-    }
+    // if (window.pageYOffset < window.innerHeight / 3) {
+    //     onBeginning();
+    //     // colorChange('#FFFFFF');
+    //     onBeginningScrollFlag = true;
+    // } else if (window.pageYOffset >= window.innerHeight / 3 && onBeginningScrollFlag == true) {
+    //     gotoDefault();
+    //     onBeginningScrollFlag = false;
+    // }
 
-    $('html').bind('mousewheel DOMMouseScroll', function (e) {
-        console.log('bingo');
-        // $(window).scroll(function () {
-        if (window.pageYOffset < window.innerHeight / 3) {
-            onBeginning();
-            // colorChange('#FFFFFF');
-            $(".threeJS__container").css("background", "#FFFFFF00");
-            onBeginningScrollFlag = true;
-        } else if (window.pageYOffset >= window.innerHeight / 3 && onBeginningScrollFlag == true) {
-            gotoDefault();
-            onBeginningScrollFlag = false;
-        }
-        // });
-    });
+
+    // $('html').bind('mousewheel DOMMouseScroll', function (e) {
+    //     // console.log('bingo');
+    //     // $(window).scroll(function () {
+    //     if (window.pageYOffset < window.innerHeight / 3) {
+    //         onBeginning();
+    //         // colorChange('#FFFFFF');
+    //         $(".threeJS__container").css("background", "#FFFFFF00");
+    //         onBeginningScrollFlag = true;
+    //     } else if (window.pageYOffset >= window.innerHeight / 3 && onBeginningScrollFlag == true) {
+    //         gotoDefault();
+    //         onBeginningScrollFlag = false;
+    //     }
+
+
+    //     // activeSection = fullpage_api.getActiveSection().item;
+    //     // console.log(activeSection);
+
+    //     // });
+    // });
 
 
 
@@ -687,25 +653,7 @@ function init() {
     gui.add(buttonDecreaseLogo, "add").name('smaller logo gsap animation');
     gui.add(buttonIncreaseLogo, "add").name('bigger logo gsap animation');
 
-    gui.add(buttonToggleMouseMove, "add").name('tgl rot&contr');
 
-    // gui.addColor(data, 'color').onChange(() => {
-    //     scene.background.color.setHex(Number(data.color.toString().replace('#', '0x')));
-    // });
-
-
-
-    // const backgroundColorFolder = gui.addFolder('THREE.Color');
-
-    // gui.addColor(data, 'backgroundColor').onChange(() => {
-    //     scene.background.backgroundColor.setHex(Number(data.backgroundColor.toString().replace('#', '0x')));
-    // })
-    // backgroundColorFolder.addColor(data, 'backgroundColor').onChange(() => {
-    //     scene.background.backgroundColor.setHex(Number(data.backgroundColor.toString().replace('#', '0x')));
-    // });
-
-    // scene.background = new THREE.Color(0x111111);
-    // gui.add(scene.background, 'color')
 
 
 
@@ -718,10 +666,6 @@ function init() {
 
 
 
-    // gui.add(camera.lookAt(new THREE.Vector3), 'x', -720, 720).name('cameraLook x');
-    // gui.add(camera.lookAt(new THREE.Vector3), 'y', -720, 720).name('cameraLook y');
-    // gui.add(camera.lookAt(new THREE.Vector3), 'z', -720, 720).name('cameraLook z');
-
     gui.add(camera, 'fov', 1, 120).onChange(camera.updateProjectionMatrix());
 
     gui.add(controls.target, 'x', -720, 720).name('controlsTarget x');
@@ -731,67 +675,31 @@ function init() {
 
 
 
-    let colorTheme;
 
 
-    let placeTemp;
 
-    window.onload = function () {
-        const sections = document.querySelectorAll('section .projects__title');
-        const callbackFunction = function (entries) {
-            console.log(entries[0]);
-
-            if (entries[0].isIntersecting) {
-                $(".threeJS__container").css("background", entries[0].target.dataset.color);
-                placeTemp = entries[0].target.dataset.place;
-                console.log(placeTemp);
-                switch (placeTemp) {
-                    case 'begin':
-                        onBeginning();
-                        break;
-                    case 'itemshop':
-                        gotoItemshop();
-                        break;
-                    case 'bar':
-                        gotoGameBar();
-                        break;
-                    case 'yourClass':
-                        gotoYourClass();
-                        break;
-                    case 'library':
-                        gotoLibrary();
-                        break;
-                    case 'mine':
-                        gotoMine();
-                        break;
-                    default:
-                        console.log('gotoDefault');
-                        gotoDefault();
-                }
-            }
+    // fullpage_api.setAllowScrolling(true);
 
 
-            // observer.unobserve(entries.target);
-
-        };
-
-        const config = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.3
-        };
-
-        const observer = new IntersectionObserver(callbackFunction, config);
-
-        // observer.observe(sections);
-
-        sections.forEach(section => observer.observe(section));
-    };
+    // fullpage_api.setAllowScrolling(true);
 
 }
 
 
+// new fullpage('#fullpage', {
+//     // anchors: ['heroPage', '1stPage', '2ndPage', '3rdPage', '4thPage', '5thPage', '6thPage', '7thPage',
+//     //     'lastPage'
+//     // ],
+//     autoScrolling: true,
+//     onSlideLeave: function (section, origin, destination, direction) {
+//         console.log("fullpage destination.item: " + destination.item);
+//         console.log("fullpage origin: " + origin);
+//         console.log("fullpage section: " + section);
 
+//     }
+//     // scrollHorizontally: true
+
+// });
 
 
 
@@ -811,34 +719,15 @@ function onWindowResize() {
 }
 
 function update() {
-    // uncommenting will enable camera move on mouse move but disable controls target gui
     controls.update();
     camera.updateProjectionMatrix();
-    // camera.lookAt(new THREE.Vector3(300, -0, -0));
 }
 
 function animate() {
 
 
     update();
-    // targetCamera.x += (-mouseXpercent * 15 - targetCamera.x) / 10;
-    // if (window.innerWidth > 768) {
-    //     // targetCamera.z += (-mouseYpercent * 15 - targetCamera.z) / 10;
-    //     targetCamera.y += (-mouseXpercent * 55 - targetCamera.y) / 10;
-    //     camera.lookAt(targetCamera);
-    // }
 
-    // if (onMouseMoveLogoRotation == false) {
-    //     controls.update();
-    // }
-    // targetCamera.rotation += (-mouseXpercent * 55) / 10;
-    // mesh.rotation.y += (-mouseYpercent * 0.13 - mesh.rotation.y);
-
-    // mesh.rotateY(Math.random() * 360 * 0.01745327)
-    // mesh.translateZ(0
-    // targetCamera.y += (-(mouseYpercent * 15) + 1 - targetCamera.y) / 15;
-
-    // camera.lookAt(mesh.position);
     requestAnimationFrame(animate, renderer.domElement);
 
     var delta = clock.getDelta();
@@ -851,10 +740,165 @@ const threeJSContainerFoo = $('#threeJSContainer')
 threeJSContainerFoo.prependTo('body');
 
 
-$(window).scroll(function () {
-    if (window.pageYOffset < window.innerHeight / 3) {
-        threeJSContainerFoo.removeClass('darker');
-    } else {
-        threeJSContainerFoo.addClass('darker');
+// $(window).scroll(function () {
+//     console.log('dasnjskgdfjsjnkdfdnjk');
+//     if (window.pageYOffset < window.innerHeight / 3) {
+//         threeJSContainerFoo.removeClass('darker');
+//     } else {
+//         threeJSContainerFoo.addClass('darker');
+//     }
+// });
+
+
+
+
+let colorTheme;
+
+
+let placeTemp;
+new fullpage('#fullpage', {
+    onLeave: function (origin, destination, direction) {
+        // var leavingSection = this;
+
+        console.log(destination.item.getAttribute('data-color'));
+        console.log(destination.item);
+        console.log(destination.item.getAttribute('data-place'));
+
+        colorTheme = destination.item.getAttribute('data-color');
+        $(".threeJS__container").css("background", colorTheme);
+
+
+        let colorTo = new THREE.Color(colorTheme);
+        if (colorTheme != '#ffffff00') {
+            gsap.to(lightD.color, {
+                r: colorTo.r,
+                g: colorTo.g,
+                b: colorTo.b,
+                duration: 0.5
+            });
+        } else {
+            colorTo = new THREE.Color('#111319');
+            gsap.to(lightD.color, {
+                r: colorTo.r,
+                g: colorTo.g,
+                b: colorTo.b,
+                duration: 0.5
+            });
+        }
+
+        placeTemp = destination.item.getAttribute('data-place');
+        // console.log(placeTemp);
+        switch (placeTemp) {
+            case 'begin':
+                onBeginning();
+                break;
+            case 'itemshop':
+                gotoItemshop();
+                break;
+            case 'bar':
+                gotoGameBar();
+                break;
+            case 'yourClass':
+                gotoYourClass();
+                break;
+            case 'library':
+                gotoLibrary();
+                break;
+            case 'mine':
+                gotoMine();
+                break;
+            default:
+                console.log('gotoDefault');
+                gotoDefault();
+        }
+
+        if (origin.item.getAttribute('data-place') == 'mine' && direction == 'down') {
+            console.log('dasdasd');
+            gotoMine();
+        }
+        // if (origin.item.getAttribute('data-place') == begin) {
+        //     onBeginning();
+        // }
     }
 });
+
+
+// window.onload = function () {
+//     const sections = document.querySelectorAll('section .projects__title');
+//     const callbackFunction = function (entries) {
+//         // console.log(entries[0]);
+
+
+//         if (entries[0].isIntersecting && entries[0].intersectionRatio > 0) {
+
+//             colorTheme = entries[0].target.dataset.color;
+//             $(".threeJS__container").css("background", colorTheme);
+
+
+//             let colorTo = new THREE.Color(colorTheme);
+//             if (colorTheme != '#ffffff00') {
+//                 gsap.to(lightD.color, {
+//                     r: colorTo.r,
+//                     g: colorTo.g,
+//                     b: colorTo.b,
+//                     duration: 0.5
+//                 });
+//             } else {
+//                 colorTo = new THREE.Color('#111319');
+//                 gsap.to(lightD.color, {
+//                     r: colorTo.r,
+//                     g: colorTo.g,
+//                     b: colorTo.b,
+//                     duration: 0.5
+//                 });
+//             }
+
+//             // $(".threeJS__container").css("background", entries[0].target.dataset.color);
+//             placeTemp = entries[0].target.dataset.place;
+//             // console.log(placeTemp);
+//             switch (placeTemp) {
+//                 case 'begin':
+//                     onBeginning();
+//                     break;
+//                 case 'itemshop':
+//                     gotoItemshop();
+//                     break;
+//                 case 'bar':
+//                     gotoGameBar();
+//                     break;
+//                 case 'yourClass':
+//                     gotoYourClass();
+//                     break;
+//                 case 'library':
+//                     gotoLibrary();
+//                     break;
+//                 case 'mine':
+//                     gotoMine();
+//                     break;
+//                 default:
+//                     console.log('gotoDefault');
+//                     gotoDefault();
+//             }
+//         }
+
+
+//         // observer.unobserve(entries.target);
+
+//     };
+
+//     // const config = {
+//     //     root: null,
+//     //     rootMargin: '0px',
+//     //     threshold: 0.2
+//     // };
+
+//     const observer = new IntersectionObserver(callbackFunction);
+
+//     // observer.observe(sections);
+
+//     sections.forEach(section => observer.observe(section));
+// };
+
+
+
+fullpage_api.setAllowScrolling(true);
