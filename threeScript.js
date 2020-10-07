@@ -9,63 +9,14 @@ import {
     GLTFLoader
 } from './three.js-master/examples/jsm/loaders/GLTFLoader.js';
 
-let threeJSContainer;
 let container, controls;
 let camera, scene, renderer, mixer;
 let lightA, lightH, lightD;
 
-let targetCamera;
 let onMouseMoveLogoRotation = true;
-
-let getColorHex;
 
 var clock = new THREE.Clock();
 
-const colorChange = function (getColorTheme) {
-    const colorTo = new THREE.Color(getColorTheme);
-    // let colorTransition = 
-    gsap.to(lightD.color, {
-        r: colorTo.r,
-        g: colorTo.g,
-        b: colorTo.b,
-        duration: 0.5
-    });
-
-    // console.log(getColorTheme);
-    $(".threeJS__container").css("background", getColorTheme);
-};
-
-const DecreaseLogoSize = function () {
-    gsap.to(camera, {
-        duration: 4,
-        zoom: 0.7,
-        ease: "sine.out",
-        onUpdate: function () {
-            camera.updateProjectionMatrix();
-        }
-    });
-
-    gsap.to(camera.position, {
-        duration: 4,
-        x: 29,
-        y: 263,
-        z: 404,
-        onUpdate: function () {
-            update();
-        }
-    })
-
-    gsap.to(controls.target, {
-        duration: 4,
-        x: -299,
-        y: -252,
-        z: -486,
-        ease: "sine.out",
-        onUpdate: function () {
-            controls.update();
-        }
-    });
-};
 
 
 //export because of module!!! big brain time https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules
@@ -307,7 +258,6 @@ const gotoDefault = function () {
 }
 
 const gotoMine = function () {
-    //    colorChange()
     gsap.to(lightD.position, {
         duration: 4,
         easy: "sine.out",
@@ -347,36 +297,6 @@ const gotoMine = function () {
     });
 }
 
-const LeftLogoPosition = function () {
-    gsap.to(camera, {
-        duration: 4,
-        ease: "sine.out",
-        onUpdate: function () {
-            camera.updateProjectionMatrix();
-        }
-    });
-
-    gsap.to(camera.position, {
-        duration: 4,
-        x: 56,
-        y: 212,
-        z: 399,
-        onUpdate: function () {
-            update();
-        }
-    })
-
-    gsap.to(controls.target, {
-        duration: 4,
-        x: 462,
-        y: -69,
-        z: -319,
-        ease: "sine.out",
-        onUpdate: function () {
-            controls.update();
-        }
-    });
-};
 // window.DecreaseLogoSize = DecreaseLogoSize; //window, żeby móc odwołać się w konsoli. Tylko do debugowania!
 // window.IncreaseLogoSize = IncreaseLogoSize;
 
@@ -384,7 +304,6 @@ const LeftLogoPosition = function () {
 init();
 animate();
 
-let activeSection;
 
 function init() {
 
@@ -509,74 +428,6 @@ function init() {
 
     gsap.registerPlugin(CustomEase);
 
-    // let onBeginningScrollFlag = true;
-
-    // if (window.pageYOffset < window.innerHeight / 3) {
-    //     onBeginning();
-    //     // colorChange('#FFFFFF');
-    //     onBeginningScrollFlag = true;
-    // } else if (window.pageYOffset >= window.innerHeight / 3 && onBeginningScrollFlag == true) {
-    //     gotoDefault();
-    //     onBeginningScrollFlag = false;
-    // }
-
-
-    // $('html').bind('mousewheel DOMMouseScroll', function (e) {
-    //     // console.log('bingo');
-    //     // $(window).scroll(function () {
-    //     if (window.pageYOffset < window.innerHeight / 3) {
-    //         onBeginning();
-    //         // colorChange('#FFFFFF');
-    //         $(".threeJS__container").css("background", "#FFFFFF00");
-    //         onBeginningScrollFlag = true;
-    //     } else if (window.pageYOffset >= window.innerHeight / 3 && onBeginningScrollFlag == true) {
-    //         gotoDefault();
-    //         onBeginningScrollFlag = false;
-    //     }
-
-
-    //     // activeSection = fullpage_api.getActiveSection().item;
-    //     // console.log(activeSection);
-
-    //     // });
-    // });
-
-
-
-
-    const buttonDecreaseLogo = {
-        add: function () {
-            DecreaseLogoSize();
-        }
-    }
-
-    const buttonIncreaseLogo = {
-        add: function () {
-            IncreaseLogoSize()
-        }
-    }
-
-    const buttonLower = {
-        add: function () {
-            goDown();
-        }
-    }
-
-
-    function toggleMouseMove() {
-        if (onMouseMoveLogoRotation == true) {
-            onMouseMoveLogoRotation = false;
-        } else {
-            onMouseMoveLogoRotation = true;
-        }
-    }
-
-    const buttonToggleMouseMove = {
-        add: function () {
-            toggleMouseMove();
-        }
-    }
-
 
 
 
@@ -647,14 +498,6 @@ function init() {
 
 
 
-    gui.add(buttonLower, "add").name('go down');
-
-
-    gui.add(buttonDecreaseLogo, "add").name('smaller logo gsap animation');
-    gui.add(buttonIncreaseLogo, "add").name('bigger logo gsap animation');
-
-
-
 
 
     gui.add(scene.fog, 'near', 1, 1500).name('fog.near');
@@ -677,30 +520,7 @@ function init() {
 
 
 
-
-    // fullpage_api.setAllowScrolling(true);
-
-
-    // fullpage_api.setAllowScrolling(true);
-
 }
-
-
-// new fullpage('#fullpage', {
-//     // anchors: ['heroPage', '1stPage', '2ndPage', '3rdPage', '4thPage', '5thPage', '6thPage', '7thPage',
-//     //     'lastPage'
-//     // ],
-//     autoScrolling: true,
-//     onSlideLeave: function (section, origin, destination, direction) {
-//         console.log("fullpage destination.item: " + destination.item);
-//         console.log("fullpage origin: " + origin);
-//         console.log("fullpage section: " + section);
-
-//     }
-//     // scrollHorizontally: true
-
-// });
-
 
 
 function onTransitionEnd(event) {
@@ -740,17 +560,6 @@ const threeJSContainerFoo = $('#threeJSContainer')
 threeJSContainerFoo.prependTo('body');
 
 
-// $(window).scroll(function () {
-//     console.log('dasnjskgdfjsjnkdfdnjk');
-//     if (window.pageYOffset < window.innerHeight / 3) {
-//         threeJSContainerFoo.removeClass('darker');
-//     } else {
-//         threeJSContainerFoo.addClass('darker');
-//     }
-// });
-
-
-
 
 let colorTheme;
 
@@ -758,11 +567,10 @@ let colorTheme;
 let placeTemp;
 new fullpage('#fullpage', {
     onLeave: function (origin, destination, direction) {
-        // var leavingSection = this;
 
-        console.log(destination.item.getAttribute('data-color'));
-        console.log(destination.item);
-        console.log(destination.item.getAttribute('data-place'));
+        // console.log(destination.item.getAttribute('data-color'));
+        // console.log(destination.item);
+        // console.log(destination.item.getAttribute('data-place'));
 
         colorTheme = destination.item.getAttribute('data-color');
         $(".threeJS__container").css("background", colorTheme);
@@ -787,7 +595,6 @@ new fullpage('#fullpage', {
         }
 
         placeTemp = destination.item.getAttribute('data-place');
-        // console.log(placeTemp);
         switch (placeTemp) {
             case 'begin':
                 onBeginning();
@@ -812,13 +619,7 @@ new fullpage('#fullpage', {
                 gotoDefault();
         }
 
-        // if (origin.item.getAttribute('data-place') == 'mine' && direction == 'down') {
-        //     console.log('dasdasd');
-        //     gotoMine();
-        // }
-        // if (origin.item.getAttribute('data-place') == begin) {
-        //     onBeginning();
-        // }
+
     }
 });
 

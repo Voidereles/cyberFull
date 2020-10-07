@@ -1,42 +1,5 @@
 // new WOW().init();
 
-// new fullpage('#fullpage', {
-//     // anchors: ['heroPage', '1stPage', '2ndPage', '3rdPage', '4thPage', '5thPage', '6thPage', '7thPage',
-//     //     'lastPage'
-//     // ],
-//     autoScrolling: true,
-//     // scrollHorizontally: true
-
-// });
-
-
-// // fullpage_api.setAllowScrolling(true);
-// new fullpage('#fullpage', {
-//     // anchors: ['heroPage', '1stPage', '2ndPage', '3rdPage', '4thPage', '5thPage', '6thPage', '7thPage',
-//     //     'lastPage'
-//     // ],
-//     autoScrolling: true,
-//     onLeave: function (origin, destination, direction) {
-//         console.log(destination.item);
-
-//     }
-//     // scrollHorizontally: true
-
-// });
-
-
-// var myFullpage = new fullpage('#fullpage', {
-//     anchors: ['heroPage', '1stPage', '2ndPage', '3rdPage', '4thPage', '5thPage', '6thPage', '7thPage',
-//         'lastPage'
-//     ],
-//     menu: '#menu',
-//     lazyLoad: true
-// });
-
-//methods
-// fullpage_api.setAllowScrolling(false);
-
-
 var introLogo = document.getElementById('IntroLogo');
 
 (function () {
@@ -194,49 +157,3 @@ $(document).ready(function () {
 
 
 });
-
-
-
-
-
-// if ('IntersectionObserver' in window) {
-//     // IntersectionObserver Supported
-//     let config = {
-//         root: null,
-//         rootMargin: '0px',
-//         threshold: 0.5
-//     };
-
-//     let observer = new IntersectionObserver(onChange, config);
-//     sections.forEach(function (img) {
-//         observer.observe(img)
-//     });
-
-//     function onChange(changes, observer) {
-//         changes.forEach(function (change) {
-//             if (change.intersectionRatio > 0) {
-//                 // Stop watching and load the image
-//                 loadImage(change.target);
-//                 observer.unobserve(change.target);
-//             }
-//         });
-//     }
-
-// } else {
-//     // IntersectionObserver NOT Supported
-//     sections.forEach(function (image) {
-//         loadImage(image);
-//     });
-// }
-
-// function loadImage(image) {
-//     image.classList.add('fade-in');
-
-//     if (image.dataset && image.dataset.src) {
-//         image.src = image.dataset.src;
-//     }
-
-//     if (image.dataset && image.dataset.srcset) {
-//         image.srcset = image.dataset.srcset;
-//     }
-// }
