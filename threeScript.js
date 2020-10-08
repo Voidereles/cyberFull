@@ -321,6 +321,47 @@ const gotoMine = function () {
             controls.update();
         }
     });
+};
+
+
+const gotoNewsletter = function () {
+    gsap.to(lightD.position, {
+        duration: 4,
+        easy: "sine.out",
+        x: -171,
+        y: -27,
+        z: -28
+    });
+
+    gsap.to(camera, {
+        duration: 4,
+        fov: 15,
+        ease: "sine.out",
+        onUpdate: function () {
+            camera.updateProjectionMatrix();
+        }
+    });
+
+    gsap.to(camera.position, {
+        duration: 4,
+        x: -296,
+        y: -2,
+        z: -73,
+        onUpdate: function () {
+            update();
+        }
+    })
+
+    gsap.to(controls.target, {
+        duration: 4,
+        x: 610,
+        y: 100,
+        z: -2,
+        ease: "sine.out",
+        onUpdate: function () {
+            controls.update();
+        }
+    });
 }
 
 // window.DecreaseLogoSize = DecreaseLogoSize; //window, żeby móc odwołać się w konsoli. Tylko do debugowania!
@@ -603,6 +644,21 @@ let colorTheme;
 
 let placeTemp;
 new fullpage('#fullpage', {
+    //Navigation
+    // menu: '#menu',
+    // lockAnchors: false,
+    // anchors: ['firstPage', 'secondPage'],
+    // navigation: false,
+    // navigationPosition: 'right',
+    // navigationTooltips: ['firstSlide', 'secondSlide'],
+    // showActiveTooltip: false,
+    // slidesNavigation: false,
+    // slidesNavPosition: 'bottom',
+
+
+    navigation: true,
+    navigationPosition: 'right',
+    navigationTooltips: ['Początek', '', 'Sklep', 'Bar gamingowy', 'Wasza klasa', 'Biblioteka', 'Kopalnia', 'Newsletter'],
     onLeave: function (origin, destination, direction) {
 
         // console.log(destination.item.getAttribute('data-color'));
@@ -651,6 +707,9 @@ new fullpage('#fullpage', {
             case 'mine':
                 gotoMine();
                 break;
+            case 'newsletter':
+                gotoNewsletter();
+                break;
             default:
                 console.log('gotoDefault');
                 gotoDefault();
@@ -660,6 +719,7 @@ new fullpage('#fullpage', {
     }
 });
 
+fullpage_api.setAllowScrolling(true);
 
 // window.onload = function () {
 //     const sections = document.querySelectorAll('section .projects__title');
