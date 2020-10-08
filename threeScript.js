@@ -25,6 +25,29 @@ var clock = new THREE.Clock();
 
 gsap.registerPlugin(CustomEase);
 
+
+const zoomCamera = function () {
+    gsap.to(camera, {
+        duration: 1.5,
+        zoom: 1.2,
+        ease: "sine.out",
+        onUpdate: function () {
+            camera.updateProjectionMatrix();
+        }
+    });
+};
+
+const unZoomCamera = function () {
+    gsap.to(camera, {
+        duration: 1.5,
+        zoom: 1,
+        ease: "sine.out",
+        onUpdate: function () {
+            camera.updateProjectionMatrix();
+        }
+    });
+};
+
 const onBeginning = function () {
     gsap.to(camera, {
         duration: 4,
@@ -521,8 +544,20 @@ function init() {
 
 
 
+    $('.projects__item').hover(
+        function () {
+            zoomCamera();
+        }
+    );
+
+    $('.projects__item').mouseleave(
+        function () {
+            unZoomCamera();
+        }
+    );
 
 }
+
 
 
 function onTransitionEnd(event) {

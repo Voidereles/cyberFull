@@ -50,7 +50,7 @@ h6 {
   margin: -75px 0 0 -75px;
   border-radius: 50%;
   border: 3px solid transparent;
-  border-top-color: #9370DB;
+  border-top-color: #DD2F61;
   -webkit-animation: spin 2s linear infinite;
   animation: spin 2s linear infinite;
 }
@@ -64,7 +64,7 @@ h6 {
   bottom: 5px;
   border-radius: 50%;
   border: 3px solid transparent;
-  border-top-color: #BA55D3;
+  border-top-color: #CD2337;
   -webkit-animation: spin 3s linear infinite;
   animation: spin 3s linear infinite;
 }
@@ -78,7 +78,7 @@ h6 {
   bottom: 15px;
   border-radius: 50%;
   border: 3px solid transparent;
-  border-top-color: #FF00FF;
+  border-top-color: #CF0007;
   -webkit-animation: spin 1.5s linear infinite;
   animation: spin 1.5s linear infinite;
 }
@@ -115,28 +115,9 @@ h6 {
   transition: 4s;
 }
 
-.threeJS__container.darker {
-  background: #3BC14A;
-}
-
-.threeJS__container canvas {
-  outline: none;
-  border: none;
-  max-width: 100%;
-}
-
-.threeJS__container canvas:focus {
-  outline: none;
-  border: none;
-}
-
-.dg main a {
-  margin-top: -50px;
-}
-
 .container-fluid {
   width: 100%;
-  max-width: 1700px;
+  max-width: 1600px;
 }
 
 .header {
@@ -398,15 +379,30 @@ h6 {
 
 .projects__item {
   position: relative;
-  height: 140px;
-  width: 100%;
   color: black;
-  font-size: 5.7rem;
+  font-size: 5rem;
   line-height: 66px;
   font-weight: 900;
   -webkit-transition: 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
   transition: 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
   z-index: 1;
+  margin: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 30vw;
+  max-width: 500px;
+  padding: 2rem;
+  background: rgba(184, 187, 193, 0.63);
+  -webkit-backdrop-filter: blur(2px);
+          backdrop-filter: blur(2px);
+  border: 1px solid black;
+  -webkit-box-shadow: 0px 0px 0px 2rem rgba(184, 187, 193, 0.63);
+          box-shadow: 0px 0px 0px 2rem rgba(184, 187, 193, 0.63);
 }
 
 .projects__item:hover {
@@ -422,9 +418,8 @@ h6 {
 .projects__description {
   height: auto;
   width: 300px;
+  margin-top: 2rem;
   z-index: 1;
-  text-align: left;
-  padding: 15px;
   opacity: 1;
   font-family: Muli, Heebo, Helvetica, Arial, sans-serif;
   font-weight: 300;
@@ -436,7 +431,11 @@ h6 {
   transition: 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-.dg-ac {
-  z-index: 50;
+.dg main a {
+  margin-top: -50px;
+}
+
+.dg.ac {
+  z-index: 50 !important;
 }
 /*# sourceMappingURL=main-style.css.map */

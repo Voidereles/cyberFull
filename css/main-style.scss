@@ -94,26 +94,6 @@ h6 {
     font-weight: bold;
 }
 
-// * {
-//     scrollbar-width: thin;
-//     scrollbar-color: $rgbWhite08 $rgbDarkest;
-// }
-
-// /* Works on Chrome/Edge/Safari */
-// *::-webkit-scrollbar {
-//     width: 7px;
-// }
-
-// *::-webkit-scrollbar-track {
-//     background: $rgbDarkest;
-// }
-
-// *::-webkit-scrollbar-thumb {
-//     background-color: $rgbWhite08;
-//     border-radius: 20px;
-//     border: 1px solid $rgbDarkest;
-// }
-
 #loading-screen {
     position: absolute;
     z-index: 9999;
@@ -140,7 +120,7 @@ h6 {
     margin: -75px 0 0 -75px;
     border-radius: 50%;
     border: 3px solid transparent;
-    border-top-color: #9370DB;
+    border-top-color: #DD2F61;
     -webkit-animation: spin 2s linear infinite;
     animation: spin 2s linear infinite;
 }
@@ -154,7 +134,7 @@ h6 {
     bottom: 5px;
     border-radius: 50%;
     border: 3px solid transparent;
-    border-top-color: #BA55D3;
+    border-top-color: #CD2337;
     -webkit-animation: spin 3s linear infinite;
     animation: spin 3s linear infinite;
 }
@@ -168,7 +148,7 @@ h6 {
     bottom: 15px;
     border-radius: 50%;
     border: 3px solid transparent;
-    border-top-color: #FF00FF;
+    border-top-color: #CF0007;
     -webkit-animation: spin 1.5s linear infinite;
     animation: spin 1.5s linear infinite;
 }
@@ -209,40 +189,14 @@ h6 {
         top: 0;
         left: 0;
         width: 100%;
-        // height: 100vh;
         z-index: -1;
-        // background: white;
         transition: 4s;
-
-        &.darker {
-            // background: linear-gradient(1turn, #303435, #292d2d 47.83%, #151618);
-            background: #3BC14A;
-        }
-
-        canvas {
-            outline: none;
-            border: none;
-            max-width: 100%;
-            // max-height: 100%;
-
-            &:focus {
-                outline: none;
-                border: none;
-            }
-        }
     }
 }
 
-
-.dg main a {
-    //controls
-    margin-top: -50px;
-}
-
-
 .container-fluid {
     width: 100%;
-    max-width: 1700px;
+    max-width: 1600px;
 }
 
 // .introLogo {
@@ -427,11 +381,6 @@ h6 {
 
 .hero {
     text-align: center;
-    // position: fixed;
-    // z-index: -2;
-    // top: 50%;
-    // transform: translate(-50%, -50%);
-    // left: 50%;
     color: black;
 
 }
@@ -439,25 +388,6 @@ h6 {
 .section .fp-tableCell {
     position: relative;
 }
-
-// .video {
-//     position: absolute;
-//     right: 0;
-//     bottom: 0;
-//     top: 0;
-//     right: 0;
-//     width: 100%;
-//     height: 100%;
-//     background-size: 100% 100%;
-//     background-color: #2B2118;
-//     background-image: url(../BackgroundVideo.mp4);
-//     background-position: center center;
-//     background-size: contain;
-//     object-fit: cover;
-//     z-index: 3;
-//     filter: brightness(0.4);
-//     -webkit-filter: brightness(0.4);
-// }
 
 #fullpage .section {
     height: 155vh;
@@ -493,15 +423,36 @@ h6 {
 
     &__item {
         position: relative;
-        height: 140px;
-        width: 100%;
         // color: rgba(187, 194, 229, .3);
         color: black;
-        font-size: 5.7rem;
+        font-size: 5rem;
         line-height: 66px;
         font-weight: 900;
         transition: .6s cubic-bezier(.165, .84, .44, 1);
         z-index: 1;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        width: 30vw;
+        max-width: 500px;
+        padding: 2rem;
+        background: rgba(184, 187, 193, 0.63);
+        backdrop-filter: blur(2px);
+        // border-radius: 2px;
+        border: 1px solid black;
+        box-shadow: 0px 0px 0px 2rem rgba(184, 187, 193, 0.63);
+
+        // &::before {
+        //     content: '';
+        //     width: 100%;
+        //     height: 100%;
+        //     position: absolute;
+        //     top: 0;
+        //     left: 0;
+        //     filter: blur(2px);
+        //     background: rgba(184, 187, 193, 0.63);
+        //     z-index: -1;
+        // }
 
 
         &:hover {
@@ -511,18 +462,15 @@ h6 {
 
             .projects__description {
                 color: black;
-                // font-weight: 700
             }
         }
     }
 
     &__description {
-        // position: fixed;
         height: auto;
         width: 300px;
+        margin-top: 2rem;
         z-index: 1;
-        text-align: left;
-        padding: 15px;
         opacity: 1;
         font-family: Muli, Heebo, Helvetica, Arial, sans-serif;
         font-weight: 300;
@@ -539,6 +487,12 @@ h6 {
 
 
 
-.dg-ac {
-    z-index: 50;
+
+.dg main a {
+    //controls
+    margin-top: -50px;
+}
+
+.dg.ac {
+    z-index: 50 !important;
 }
