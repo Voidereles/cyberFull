@@ -16,7 +16,7 @@ let container, controls;
 let camera, scene, renderer, mixer;
 let lightA, lightH, lightD;
 let targetCamera;
-let stats;
+let stats, stats2;
 
 let onMouseMoveLogoRotation = true;
 
@@ -502,6 +502,11 @@ function init() {
     container.appendChild(stats.dom);
 
 
+    stats2 = new Stats();
+    stats2.showPanel(1); // Panel 1 = ms
+    stats2.domElement.style.cssText = 'position:fixed;top:0px;left:80px;';
+    document.body.appendChild(stats2.domElement);
+
 
 
     var gui = new GUI();
@@ -641,8 +646,9 @@ function animate() {
 
 
     stats.update();
+    stats2.update();
 
-};
+}
 const threeJSContainerFoo = $('#threeJSContainer')
 threeJSContainerFoo.prependTo('body');
 
@@ -728,7 +734,6 @@ new fullpage('#fullpage', {
     }
 });
 
-stats.showPanel(0);
 
 fullpage_api.setAllowScrolling(true);
 
