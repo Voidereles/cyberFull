@@ -9,11 +9,14 @@ import {
     GLTFLoader
 } from './three.js-master/examples/jsm/loaders/GLTFLoader.js';
 
+import Stats from './three.js-master/examples/jsm/libs/stats.module.js';
+
 let threeJSContainer;
 let container, controls;
 let camera, scene, renderer, mixer;
 let lightA, lightH, lightD;
 let targetCamera;
+let stats;
 
 let onMouseMoveLogoRotation = true;
 
@@ -495,6 +498,9 @@ function init() {
 
 
 
+    stats = new Stats();
+    container.appendChild(stats.dom);
+
 
 
 
@@ -633,6 +639,9 @@ function animate() {
 
     renderer.render(scene, camera);
 
+
+    stats.update();
+
 };
 const threeJSContainerFoo = $('#threeJSContainer')
 threeJSContainerFoo.prependTo('body');
@@ -718,6 +727,8 @@ new fullpage('#fullpage', {
 
     }
 });
+
+stats.showPanel(0);
 
 fullpage_api.setAllowScrolling(true);
 
