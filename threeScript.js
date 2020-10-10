@@ -448,7 +448,7 @@ function init() {
 
 
 
-    scene.fog = new THREE.Fog(0x111319, 300, 900);
+    // scene.fog = new THREE.Fog(0x111319, 300, 900);
     //responsywnosc z fog
 
     lightA = new THREE.AmbientLight(0xfffffe, 0.05);
@@ -461,8 +461,8 @@ function init() {
     lightD = new THREE.DirectionalLight(0x111319, 2.07);
     lightD.position.set(220, 150, -250);
     lightD.castShadow = true;
-    lightD.shadow.mapSize.width = 2048;
-    lightD.shadow.mapSize.height = 2048;
+    lightD.shadow.mapSize.width = 128;
+    lightD.shadow.mapSize.height = 128;
     lightD.shadow.camera.top = 180;
     lightD.shadow.camera.bottom = -200;
     lightD.shadow.camera.left = -200;
@@ -550,67 +550,65 @@ function init() {
 
 
 
-    var gui = new GUI();
+    // var gui = new GUI();
 
-    var data = {
-        color: lightA.color.getHex(),
-        groundColor: lightH.groundColor.getHex(),
-        skyColor: lightH.color.getHex(),
-        color: lightD.color.getHex(),
-        shadowMapSizeWidth: 2048,
-        shadowMapSizeHeight: 2048,
-        // backgroundColor: scene.background.color.getHex(),
-        mapsEnabled: true
-        //pobieramy tu te informacje co już są
-    };
-
-
-
-    //ambient//
-    const lightFolder = gui.addFolder('THREE.Light');
-    // gui.add(light, 'intensity', 0, 2, 0.01);
-    lightFolder.addColor(data, 'color').onChange(() => {
-        lightA.color.setHex(Number(data.color.toString().replace('#', '0x')));
-    });
-    lightFolder.add(lightA, 'intensity', 0, 4, 0.01);
-    //ambient//
+    // var data = {
+    //     color: lightA.color.getHex(),
+    //     groundColor: lightH.groundColor.getHex(),
+    //     skyColor: lightH.color.getHex(),
+    //     color: lightD.color.getHex(),
+    //     shadowMapSizeWidth: 2048,
+    //     shadowMapSizeHeight: 2048,
+    //     // backgroundColor: scene.background.color.getHex(),
+    //     mapsEnabled: true
+    //     //pobieramy tu te informacje co już są
+    // };
 
 
-    //hemisphere
-    const hemisphereLightFolder = gui.addFolder('THREE.HemisphereLight');
-    hemisphereLightFolder.addColor(data, 'groundColor').onChange(() => {
-        lightH.groundColor.setHex(Number(data.groundColor.toString().replace('#', '0x')));
-    });
-    hemisphereLightFolder.addColor(data, 'color').onChange(() => {
-        lightH.color.setHex(Number(data.color.toString().replace('#', '0x')));
-    });
-    hemisphereLightFolder.add(lightH.position, "x", -200, 200, 1);
-    hemisphereLightFolder.add(lightH.position, "y", -200, 200, 1);
-    hemisphereLightFolder.add(lightH.position, "z", -200, 200, 1);
-    hemisphereLightFolder.add(lightH, 'intensity', 0, 4, 0.01);
-    //hemisphere
+
+    // //ambient//
+    // const lightFolder = gui.addFolder('THREE.Light');
+    // // gui.add(light, 'intensity', 0, 2, 0.01);
+    // lightFolder.addColor(data, 'color').onChange(() => {
+    //     lightA.color.setHex(Number(data.color.toString().replace('#', '0x')));
+    // });
+    // lightFolder.add(lightA, 'intensity', 0, 4, 0.01);
+    // //ambient//
 
 
-    //directionalLight
-    const directionalLightFolder = gui.addFolder('THREE.DirectionalLight');
-    directionalLightFolder.add(lightD.position, "x", -500, 500, 1);
-    directionalLightFolder.add(lightD.position, "y", -500, 500, 1);
-    directionalLightFolder.add(lightD.position, "z", -500, 500, 1);
-    directionalLightFolder.add(lightD, 'intensity', 0, 4, 0.01)
-    directionalLightFolder.addColor(data, 'color').onChange(() => {
-        lightD.color.setHex(Number(data.color.toString().replace('#', '0x')));
-    });
-    directionalLightFolder.add(lightD.shadow.camera, "left", -300, 300, 1).onChange(() => lightD.shadow.camera.updateProjectionMatrix())
-    directionalLightFolder.add(lightD.shadow.camera, "right", -300, 300, 1).onChange(() => lightD.shadow.camera.updateProjectionMatrix())
-    directionalLightFolder.add(lightD.shadow.camera, "top", -300, 300, 1).onChange(() => lightD.shadow.camera.updateProjectionMatrix())
-    directionalLightFolder.add(lightD.shadow.camera, "bottom", -300, 300, 1).onChange(() => lightD.shadow.camera.updateProjectionMatrix())
-    directionalLightFolder.add(lightD.shadow.camera, "near", 0.1, 300).onChange(() => lightD.shadow.camera.updateProjectionMatrix())
-    directionalLightFolder.add(lightD.shadow.camera, "far", 0.1, 300).onChange(() => lightD.shadow.camera.updateProjectionMatrix())
-    directionalLightFolder.add(data, "shadowMapSizeWidth", [256, 512, 1024, 2048, 4096]).onChange(() => updateShadowMapSize())
-    directionalLightFolder.add(data, "shadowMapSizeHeight", [256, 512, 1024, 2048, 4096]).onChange(() => updateShadowMapSize())
-    //directionalLight
+    // //hemisphere
+    // const hemisphereLightFolder = gui.addFolder('THREE.HemisphereLight');
+    // hemisphereLightFolder.addColor(data, 'groundColor').onChange(() => {
+    //     lightH.groundColor.setHex(Number(data.groundColor.toString().replace('#', '0x')));
+    // });
+    // hemisphereLightFolder.addColor(data, 'color').onChange(() => {
+    //     lightH.color.setHex(Number(data.color.toString().replace('#', '0x')));
+    // });
+    // hemisphereLightFolder.add(lightH.position, "x", -200, 200, 1);
+    // hemisphereLightFolder.add(lightH.position, "y", -200, 200, 1);
+    // hemisphereLightFolder.add(lightH.position, "z", -200, 200, 1);
+    // hemisphereLightFolder.add(lightH, 'intensity', 0, 4, 0.01);
+    // //hemisphere
 
 
+    // //directionalLight
+    // const directionalLightFolder = gui.addFolder('THREE.DirectionalLight');
+    // directionalLightFolder.add(lightD.position, "x", -500, 500, 1);
+    // directionalLightFolder.add(lightD.position, "y", -500, 500, 1);
+    // directionalLightFolder.add(lightD.position, "z", -500, 500, 1);
+    // directionalLightFolder.add(lightD, 'intensity', 0, 4, 0.01)
+    // directionalLightFolder.addColor(data, 'color').onChange(() => {
+    //     lightD.color.setHex(Number(data.color.toString().replace('#', '0x')));
+    // });
+    // directionalLightFolder.add(lightD.shadow.camera, "left", -300, 300, 1).onChange(() => lightD.shadow.camera.updateProjectionMatrix())
+    // directionalLightFolder.add(lightD.shadow.camera, "right", -300, 300, 1).onChange(() => lightD.shadow.camera.updateProjectionMatrix())
+    // directionalLightFolder.add(lightD.shadow.camera, "top", -300, 300, 1).onChange(() => lightD.shadow.camera.updateProjectionMatrix())
+    // directionalLightFolder.add(lightD.shadow.camera, "bottom", -300, 300, 1).onChange(() => lightD.shadow.camera.updateProjectionMatrix())
+    // directionalLightFolder.add(lightD.shadow.camera, "near", 0.1, 300).onChange(() => lightD.shadow.camera.updateProjectionMatrix())
+    // directionalLightFolder.add(lightD.shadow.camera, "far", 0.1, 300).onChange(() => lightD.shadow.camera.updateProjectionMatrix())
+    // directionalLightFolder.add(data, "shadowMapSizeWidth", [256, 512, 1024, 2048, 4096]).onChange(() => updateShadowMapSize())
+    // directionalLightFolder.add(data, "shadowMapSizeHeight", [256, 512, 1024, 2048, 4096]).onChange(() => updateShadowMapSize())
+    // //directionalLight
 
 
 
@@ -618,21 +616,23 @@ function init() {
 
 
 
-    gui.add(scene.fog, 'near', 1, 1500).name('fog.near');
-    gui.add(scene.fog, 'far', 1, 1500).name('fog.far');
-
-    gui.add(camera.position, 'x', -720, 720).name('cameraPosition x');
-    gui.add(camera.position, 'y', -720, 720).name('cameraPosition y');
-    gui.add(camera.position, 'z', -720, 720).name('cameraPosition z');
 
 
+    // gui.add(scene.fog, 'near', 1, 1500).name('fog.near');
+    // gui.add(scene.fog, 'far', 1, 1500).name('fog.far');
 
-    gui.add(camera, 'fov', 1, 120).onChange(camera.updateProjectionMatrix());
+    // gui.add(camera.position, 'x', -720, 720).name('cameraPosition x');
+    // gui.add(camera.position, 'y', -720, 720).name('cameraPosition y');
+    // gui.add(camera.position, 'z', -720, 720).name('cameraPosition z');
 
-    gui.add(controls.target, 'x', -720, 720).name('controlsTarget x');
-    gui.add(controls.target, 'y', -100, 100).name('controlsTarget y');
-    gui.add(controls.target, 'z', -720, 720).name('controlsTarget z');
-    gui.closed = true;
+
+
+    // gui.add(camera, 'fov', 1, 120).onChange(camera.updateProjectionMatrix());
+
+    // gui.add(controls.target, 'x', -720, 720).name('controlsTarget x');
+    // gui.add(controls.target, 'y', -100, 100).name('controlsTarget y');
+    // gui.add(controls.target, 'z', -720, 720).name('controlsTarget z');
+    // gui.closed = true;
 
 
 
