@@ -557,8 +557,8 @@ function init() {
         groundColor: lightH.groundColor.getHex(),
         skyColor: lightH.color.getHex(),
         color: lightD.color.getHex(),
-        shadowMapSizeWidth: 4096,
-        shadowMapSizeHeight: 4096,
+        shadowMapSizeWidth: 2048,
+        shadowMapSizeHeight: 2048,
         // backgroundColor: scene.background.color.getHex(),
         mapsEnabled: true
         //pobieramy tu te informacje co już są
