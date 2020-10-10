@@ -370,6 +370,47 @@ const gotoNewsletter = function () {
 // window.DecreaseLogoSize = DecreaseLogoSize; //window, żeby móc odwołać się w konsoli. Tylko do debugowania!
 // window.IncreaseLogoSize = IncreaseLogoSize;
 
+function createInterval() {
+    let currentSceneIndex = 0;
+    const maxSceneIndex = 7;
+    const floorNames = [
+        'dach_basic.001',
+        'drzewko',
+        'smok',
+
+        'bar',
+        'klasa',
+        'biblio_the_best',
+        'gora_kopalni',
+        'kopalnia_dol'
+    ];
+
+    setInterval(() => {
+        if (currentSceneIndex < maxSceneIndex) {
+            currentSceneIndex++;
+        } else {
+            currentSceneIndex = 0;
+        }
+
+        // Hide all listed meshes first
+        scene.traverse(child => floorNames.includes(child.name) ? child.visible = false : null);
+
+        // Display only current mesh + 2 adjacent
+        for (let i = -1; i < 2; i++) {
+            const floorSubmesh = scene.getObjectByName(floorNames[currentSceneIndex + i]);
+
+            console.info({
+                i,
+                name: floorNames[currentSceneIndex + i],
+                floorSubmesh
+            });
+
+            if (floorSubmesh) {
+                floorSubmesh.visible = true;
+            }
+        }
+    }, 4000);
+}
 
 init();
 animate();
@@ -607,6 +648,8 @@ function init() {
             unZoomCamera();
         }
     );
+
+    createInterval();
 
 }
 
