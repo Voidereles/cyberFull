@@ -353,7 +353,7 @@ const gotoNewsletter = function () {
         onUpdate: function () {
             update();
         }
-    })
+    });
 
     gsap.to(controls.target, {
         duration: 4,
@@ -365,7 +365,7 @@ const gotoNewsletter = function () {
             controls.update();
         }
     });
-}
+};
 
 // window.DecreaseLogoSize = DecreaseLogoSize; //window, żeby móc odwołać się w konsoli. Tylko do debugowania!
 // window.IncreaseLogoSize = IncreaseLogoSize;
@@ -452,7 +452,7 @@ function init() {
     //responsywnosc z fog
 
     lightA = new THREE.AmbientLight(0xfffffe, 0.05);
-    scene.add(lightA);
+    // scene.add(lightA);
 
     lightH = new THREE.HemisphereLight(0xffffff, 0x111319, 0.8);
     lightH.position.set(0, 200, 0);
@@ -461,8 +461,8 @@ function init() {
     lightD = new THREE.DirectionalLight(0x111319, 2.07);
     lightD.position.set(220, 150, -250);
     lightD.castShadow = true;
-    lightD.shadow.mapSize.width = 4096;
-    lightD.shadow.mapSize.height = 4096;
+    lightD.shadow.mapSize.width = 2048;
+    lightD.shadow.mapSize.height = 2048;
     lightD.shadow.camera.top = 180;
     lightD.shadow.camera.bottom = -200;
     lightD.shadow.camera.left = -200;
